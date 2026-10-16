@@ -1,4 +1,5 @@
 <?php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-class Service extends Model { protected $guarded = []; protected $casts = ['active' => 'boolean']; }
+use Illuminate\Database\Eloquent\SoftDeletes;
+class Service extends Model { use SoftDeletes; protected $guarded = []; protected $casts = ['active' => 'boolean']; }

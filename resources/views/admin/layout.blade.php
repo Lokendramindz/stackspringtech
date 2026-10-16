@@ -5,7 +5,8 @@
 <aside><a class="logo" href="{{ route('admin') }}"><img src="{{ asset('images/logo-white.png') }}" alt="StackSpring"><small>Admin panel</small></a>
   <a href="{{ route('admin') }}">Dashboard</a>
   <a href="{{ route('admin.leads') }}">Leads</a>
-  @foreach (['services', 'packages', 'posts', 'pages'] as $k)<a href="{{ route('admin.index', $k) }}">{{ config("admin.$k.label") }}</a>@endforeach
+  <a href="{{ route('admin.site-settings') }}">Site header &amp; footer</a>
+  @foreach (['pages', 'services', 'packages', 'posts'] as $k)<a href="{{ route('admin.index', $k) }}">{{ $k === 'pages' ? 'Website pages' : config("admin.$k.label") }}</a>@endforeach
   <a href="{{ route('home') }}" target="_blank">View site ↗</a>
   <form method="POST" action="{{ route('logout') }}">@csrf<button class="lnk">Log out</button></form>
 </aside>

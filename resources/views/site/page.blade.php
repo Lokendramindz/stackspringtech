@@ -1,7 +1,11 @@
 @extends('layouts.app')
-@section('title', $page->meta_title ?: $page->title)
-@section('desc', $page->meta_description ?: Str::limit(strip_tags($page->body), 155))
+@section('title', $page->meta_title ?: ($seo->meta_title ?: $page->title))
+@section('desc', $page->meta_description ?: ($seo->meta_description ?: Str::limit(strip_tags($page->body), 155)))
+@section('robots', $page->meta_robots ?: $seo->meta_robots)
+@section('og_image', $page->og_image ?: $seo->og_image)
 @section('content')
-<section class="wrap sec narrow prose"><h1>{{ $page->title }}</h1>{!! Str::markdown($page->body ?? '', ['html_input' => 'strip']) !!}
-<p><a class="btn" href="{{ route('contact') }}">Get in touch</a></p></section>
+<section class="inner-hero about-hero reveal"><div class="wrap inner-hero-grid"><div><p class="eyebrow">About / StackSpring Technologies</p><h1>{{ $page->title }}</h1><p class="inner-lead">{{ $pageCopy['content.about.hero_intro'] }}</p><div class="hero-actions"><a class="btn" href="{{ route('contact') }}">Talk through your project <span aria-hidden="true">-></span></a><a class="text-link" href="{{ route('services') }}">Explore our services <span aria-hidden="true">-></span></a></div></div><aside class="about-aside"><span>Our approach</span><strong>Small, focused teams</strong><strong>Clear project ownership</strong><strong>Reliable handover</strong><div class="about-aside-mark" aria-hidden="true">SS<span>+</span></div></aside></div></section>
+<section class="wrap sec about-content reveal"><article class="prose">{!! Str::markdown($page->body ?? '', ['html_input' => 'strip']) !!}</article><aside class="about-contact"><p class="eyebrow">Build something useful</p><h2>Have a challenge in mind?</h2><p>Tell us what your team needs. We can help turn a rough brief into a clear project scope.</p><a class="btn" href="{{ route('contact') }}">Get in touch <span aria-hidden="true">-></span></a></aside></section>
+<section class="about-principles reveal"><div class="wrap sec"><div class="section-heading"><div><p class="eyebrow">How we work</p><h2>{{ $pageCopy['content.about.approach_heading'] }}</h2></div><p class="sub">We connect product goals to practical engineering choices, then keep the work understandable as it moves forward.</p></div><div class="about-principle-grid"><article><span>01 / UNDERSTAND</span><h3>Start with your workflow</h3><p>We learn what your customers and team need before recommending a build or integration.</p></article><article><span>02 / DESIGN</span><h3>Choose what fits</h3><p>We shape the scope and technology around your requirements, team, and future support needs.</p></article><article><span>03 / DELIVER</span><h3>Make the next step clear</h3><p>Keep progress visible with written scope, practical QA, and a considered handover.</p></article></div></div></section>
+<section class="inner-cta reveal"><div class="wrap inner-cta-row"><div><p class="eyebrow">Let's work together</p><h2>{{ $pageCopy['content.about.cta_heading'] }}</h2></div><a class="btn" href="{{ route('contact') }}">Start a conversation <span aria-hidden="true">-></span></a></div></section>
 @endsection

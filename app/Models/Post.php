@@ -1,4 +1,5 @@
 <?php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-class Post extends Model { protected $guarded = []; protected $casts = ['published_at' => 'datetime']; }
+use Illuminate\Database\Eloquent\SoftDeletes;
+class Post extends Model { use SoftDeletes; protected $guarded = []; protected $casts = ['published_at' => 'datetime']; }
